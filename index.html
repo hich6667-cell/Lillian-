@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未來探索所 FUTURE LAB｜高中生職涯與升學平台</title>
+<style>
+:root{--navy:#18334d;--blue:#356b91;--sky:#eaf3f8;--cream:#fbfaf6;--ink:#243442;--muted:#657582;--line:#dce5e9;--gold:#f0bd63;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans TC",sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:900;letter-spacing:.5px;color:var(--navy);font-size:1.15rem}
+.brand small{display:block;font-size:.68rem;letter-spacing:2px;color:var(--muted);font-weight:600}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+nav a{font-size:.9rem;color:#435766}
+nav a:hover{color:var(--blue)}
+.menu-btn{display:none;border:0;background:var(--sky);padding:8px 12px;border-radius:8px}
+.hero{background:linear-gradient(120deg,#18334d,#2c607f);color:white;padding:76px 0 68px;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;width:390px;height:390px;border:1px solid #ffffff25;border-radius:50%;right:5%;top:-130px;box-shadow:0 0 0 45px #ffffff0b,0 0 0 90px #ffffff08}
+.hero-inner{position:relative;z-index:1;max-width:760px}
+.eyebrow{color:#f4cc86;font-weight:700;letter-spacing:2px;font-size:.82rem}
+h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.18;margin:12px 0 18px}
+.hero p{font-size:1.08rem;color:#e0ebf1;max-width:650px}
+.btn{display:inline-block;border:0;border-radius:999px;padding:11px 20px;font-weight:700;cursor:pointer;background:var(--gold);color:#273746;margin:8px 8px 0 0}
+.btn.secondary{background:#ffffff18;color:white;border:1px solid #ffffff70}
+.btn.blue{background:var(--navy);color:white}
+.btn.light{background:var(--sky);color:var(--navy)}
+section{padding:66px 0}
+.section-head{max-width:700px;margin-bottom:28px}
+.kicker{color:var(--blue);font-weight:800;letter-spacing:1.5px;font-size:.78rem}
+.section-head h2{font-size:clamp(1.7rem,3vw,2.45rem);margin:4px 0 8px;color:var(--navy)}
+.section-head p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 7px 24px #17364b08}
+.card h3{margin:7px 0;color:var(--navy)}
+.card p{margin:6px 0;color:var(--muted)}
+.icon{width:44px;height:44px;display:grid;place-items:center;background:var(--sky);border-radius:13px;font-size:1.35rem}
+.quick{padding:0;margin-top:-28px;position:relative;z-index:2}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.quick a{background:white;border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:0 8px 25px #18334d0c}
+.quick strong{display:block;color:var(--navy)}
+.quick span{font-size:.85rem;color:var(--muted)}
+.alt{background:#f0f5f7}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.field,select{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:white;font:inherit;min-width:180px}
+.field{flex:1}
+.tag{display:inline-block;font-size:.75rem;padding:4px 9px;border-radius:99px;background:var(--sky);color:var(--blue);font-weight:700;margin:3px 4px 3px 0}
+.course-card{display:flex;flex-direction:column}
+.course-card .details{margin-top:auto;padding-top:12px}
+.course-card button{align-self:flex-start}
+.quiz-box{background:white;border:1px solid var(--line);border-radius:20px;padding:26px;max-width:780px}
+.question{font-weight:800;font-size:1.15rem;color:var(--navy);margin:0 0 14px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;text-align:left;cursor:pointer;font:inherit}
+.choice:hover,.choice.selected{border-color:var(--blue);background:var(--sky)}
+.progress{height:8px;background:#e8eef1;border-radius:20px;margin:15px 0 22px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--blue);width:0;transition:.2s}
+.result{background:#eef5f8;padding:18px;border-radius:14px;margin-top:18px}
+.admission-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.admission{padding:20px;background:white;border:1px solid var(--line);border-radius:15px}
+.admission h3{margin:0 0 6px;color:var(--navy)}
+.steps{counter-reset:step}
+.step{display:flex;gap:14px;margin:16px 0}
+.step:before{counter-increment:step;content:counter(step);flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:white;font-weight:800}
+.interview{border-left:4px solid var(--gold)}
+footer{background:#152d42;color:#dce8ee;padding:35px 0}
+footer p{color:#b8c9d3;font-size:.9rem}
+.notice{font-size:.85rem;color:var(--muted);background:#fff8e9;padding:12px 15px;border-radius:10px;border:1px solid #f2dfb8}
+.empty{padding:24px;text-align:center;color:var(--muted);grid-column:1/-1}
+@media(max-width:800px){
+.grid{grid-template-columns:repeat(2,1fr)}
+.quick-grid{grid-template-columns:repeat(2,1fr)}
+nav{display:none;position:absolute;top:72px;left:0;right:0;background:white;padding:18px 4%;border-bottom:1px solid var(--line)}
+nav.open{display:grid;grid-template-columns:1fr 1fr}
+.menu-btn{display:block}
+}
+@media(max-width:560px){
+section{padding:48px 0}
+.grid,.admission-list{grid-template-columns:1fr}
+.choices{grid-template-columns:1fr}
+.hero{padding:58px 0}
+.quick-grid{gap:8px}
+.quick a{padding:13px}
+.nav{height:64px}
+nav{top:64px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container nav">
+<a class="brand" href="#home">FUTURE LAB <small>未來探索所</small></a>
+<button class="menu-btn" onclick="toggleMenu()" aria-label="開啟選單">☰</button>
+<nav id="nav">
+<a href="#explore" onclick="closeMenu()">職涯探索</a>
+<a href="#careers" onclick="closeMenu()">職業百科</a>
+<a href="#majors" onclick="closeMenu()">科系介紹</a>
+<a href="#admission" onclick="closeMenu()">升學指南</a>
+<a href="#stories" onclick="closeMenu()">經驗分享</a>
+<a href="#saved" onclick="closeMenu()">我的收藏</a>
+</nav>
+</div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+<div class="container hero-inner">
+<div class="eyebrow">DISCOVER YOUR POSSIBILITIES</div>
+<h1>你的未來，<br>從探索開始。</h1>
+<p>不確定自己適合什麼嗎？從認識興趣、了解職業，到探索大學科系與升學方式，陪你一步步找到更多可能。</p>
+<a class="btn" href="#explore">開始職涯探索　→</a>
+<a class="btn secondary" href="#majors">瀏覽大學科系</a>
+</div>
+</section>
+
+<div class="container quick">
+<div class="quick-grid">
+<a href="#explore"><strong>🧭 探索興趣</strong><span>認識自己的特質與方向</span></a>
+<a href="#careers"><strong>💼 認識職業</strong><span>了解工作內容與能力</span></a>
+<a href="#majors"><strong>🎓 探索科系</strong><span>找到感興趣的學習領域</span></a>
+<a href="#admission"><strong>📚 升學指南</strong><span>認識不同入學管道</span></a>
+</div>
+</div>
+
+<section id="explore">
+<div class="container">
+<div class="section-head">
+<div class="kicker">01 / KNOW YOURSELF</div>
+<h2>先認識自己，再選擇方向</h2>
+<p>這份小測驗不是正式心理測驗，也不會替你決定未來；它會依照你的選擇，提供可以進一步認識的領域。</p>
+</div>
+<div class="quiz-box">
+<div style="display:flex;justify-content:space-between;gap:10px">
+<strong id="quizStep">第 1 題／共 5 題</strong>
+<span id="quizCount">0 / 5</span>
+</div>
+<div class="progress"><span id="progress"></span></div>
+<p class="question" id="question">你最喜歡哪一類活動？</p>
+<div class="choices" id="choices"></div>
+<div style="display:flex;justify-content:space-between;margin-top:18px">
+<button class="btn light" onclick="restartQuiz()">重新開始</button>
+<button class="btn blue" id="nextBtn" onclick="nextQuestion()" disabled>下一題</button>
+</div>
+<div id="quizResult" class="result" hidden></div>
+</div>
+</div>
+</section>
+
+<section class="alt" id="careers">
+<div class="container">
+<div class="section-head">
+<div class="kicker">02 / CAREER LIBRARY</div>
+<h2>職業百科</h2>
+<p>從工作內容、需要的能力與可能的學習背景，認識不同職涯。</p>
+</div>
+<div class="toolbar">
+<input class="field" id="careerSearch" placeholder="搜尋職業，例如：記者、設計師" oninput="renderCareers()">
+<select id="careerCategory" onchange="renderCareers()">
+<option value="全部">所有領域</option>
+<option>傳播與內容</option>
+<option>設計與創意</option>
+<option>科技與資訊</option>
+<option>教育與助人</option>
+<option>商業與管理</option>
+<option>醫療與健康</option>
+</select>
+</div>
+<div class="grid" id="careerGrid"></div>
+</div>
+</section>
+
+<section id="majors">
+<div class="container">
+<div class="section-head">
+<div class="kicker">03 / UNIVERSITY MAJORS</div>
+<h2>大學科系探索</h2>
+<p>科系名稱相似，實際課程可能很不一樣。選系前，建議查看各校課程地圖、必修科目與實習資源。</p>
+</div>
+<div class="toolbar">
+<input class="field" id="majorSearch" placeholder="搜尋科系或關鍵字" oninput="renderMajors()">
+<select id="majorGroup" onchange="renderMajors()">
+<option value="全部">所有學群</option>
+<option>資訊</option>
+<option>工程</option>
+<option>傳播</option>
+<option>社會與心理</option>
+<option>管理</option>
+<option>藝術與設計</option>
+<option>教育</option>
+<option>醫藥衛生</option>
+</select>
+</div>
+<div class="grid" id="majorGrid"></div>
+<p class="notice" style="margin-top:20px">提醒：同一科系在不同大學的課程、師資與特色可能不同。此處為科系方向入門介紹，實際資訊請以各校當年度課程及招生簡章為準。</p>
+</div>
+</section>
+
+<section class="alt" id="admission">
+<div class="container">
+<div class="section-head">
+<div class="kicker">04 / ADMISSION GUIDE</div>
+<h2>升學入學方式</h2>
+<p>先認識制度，再依自己的學制、成績、學習歷程與志願規劃升學策略。</p>
+</div>
+<div class="admission-list">
+<article class="admission">
+<span class="tag">一般大學</span>
+<h3>繁星推薦</h3>
+<p>由高中學校推薦學生，依校內在校成績等規定進行分發。適用資格與校系條件須查閱當年度簡章。</p>
+</article>
+<article class="admission">
+<span class="tag">一般大學</span>
+<h3>申請入學</h3>
+<p>學生依規定報名校系，部分校系會進行第二階段甄試，可能包含書面審查、面試或其他項目。</p>
+</article>
+<article class="admission">
+<span class="tag">一般大學</span>
+<h3>分發入學</h3>
+<p>依當年度採計的考試成績、志願與招生名額進行分發，應留意各校系採計科目與加權方式。</p>
+</article>
+<article class="admission">
+<span class="tag">多元管道</span>
+<h3>特殊選才</h3>
+<p>部分大學針對具特殊才能、經歷或潛力的學生辦理招生，各校系資格與審查方式不同。</p>
+</article>
+<article class="admission">
+<span class="tag">技專校院</span>
+<h3>四技二專升學</h3>
+<p>技術型高中學生可依自身學制與資格，了解甄選入學、技優入學、登記分發等招生管道。</p>
+</article>
+<article class="admission">
+<span class="tag">學習準備</span>
+<h3>學習歷程檔案</h3>
+<p>整理課程學習成果、多元表現與反思，重點是呈現學習過程、個人投入及與申請校系的連結。</p>
+</article>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h3>升學準備四步驟</h3>
+<div class="steps">
+<div class="step"><div><strong>確認自己的學制與資格</strong><br><span style="color:var(--muted)">普通高中、技術型高中及其他學制，適用管道可能不同。</span></div></div>
+<div class="step"><div><strong>蒐集校系資訊</strong><br><span style="color:var(--muted)">查看招生名額、採計科目、課程特色及審查資料要求。</span></div></div>
+<div class="step"><div><strong>整理學習經驗</strong><br><span style="color:var(--muted)">回顧課程、活動、作品與自主學習，整理具體成果與反思。</span></div></div>
+<div class="step"><div><strong>核對當年度官方簡章</strong><br><span style="color:var(--muted)">重要日期、資格及規則每年可能調整，請以官方公告為準。</span></div></div>
+</div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>官方升學資訊</h3>
+<p><a href="https://www.cac.edu.tw/" target="_blank" rel="noopener">大學甄選入學委員會 ↗</a>　｜　<a href="https://www.uac.edu.tw/" target="_blank" rel="noopener">大學考試入學分發委員會 ↗</a></p>
+<p><a href="https://www.techadmi.edu.tw/" target="_blank" rel="noopener">技專校院招生策略委員會 ↗</a>　｜　<a href="https://collego.edu.tw/" target="_blank" rel="noopener">ColleGo! 大學選才與高中育才輔助系統 ↗</a></p>
+</div>
+</div>
+</section>
+
+<section id="stories">
+<div class="container">
+<div class="section-head">
+<div class="kicker">05 / REAL STORIES</div>
+<h2>學長姐與職人經驗</h2>
+<p>每個人的選擇都不同。透過真實經驗，了解課堂之外的學習與工作樣貌。</p>
+</div>
+<div class="grid">
+<article class="card interview">
+<span class="tag">大學生訪談</span>
+<h3>進入大學後，和想像中一樣嗎？</h3>
+<p>可以訪問不同年級學生，分享課程、社團、實習、學習挑戰與選系考量。</p>
+</article>
+<article class="card interview">
+<span class="tag">職人訪談</span>
+<h3>一天的工作現場</h3>
+<p>邀請不同產業工作者分享日常任務、專業能力、工作挑戰與職涯轉折。</p>
+</article>
+<article class="card interview">
+<span class="tag">跨域經驗</span>
+<h3>不是本科系，也能走進這個領域嗎？</h3>
+<p>認識跨領域學習、第二專長、實習與作品累積的不同路徑。</p>
+</article>
+</div>
+<p class="notice" style="margin-top:18px">此區目前為內容企劃範例。正式上線前，可替換成經受訪者同意刊登的訪談文章、照片與影音。</p>
+</div>
+</section>
+
+<section class="alt" id="saved">
+<div class="container">
+<div class="section-head">
+<div class="kicker">06 / MY COLLECTION</div>
+<h2>我的探索收藏</h2>
+<p>收藏有興趣的職業與科系，方便之後比較與規劃。</p>
+</div>
+<div class="grid" id="savedGrid">
+<div class="empty">目前還沒有收藏，先到職業百科或科系介紹看看吧！</div>
+</div>
+<button class="btn light" onclick="clearSaved()">清除所有收藏</button>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<strong>FUTURE LAB｜未來探索所</strong>
+<p>陪伴高中生認識自己、探索職涯、理解科系與升學選擇。</p>
+<p>本網站為教育資訊展示原型，非官方招生平台。招生制度、日期、資格及校系資訊請以各招生單位最新公告為準。</p>
+<small>© 2026 FUTURE LAB. 學習探索用途。</small>
+</div>
+</footer>
+
+<script>
+const careers=[
+{name:"新聞記者",cat:"傳播與內容",desc:"蒐集資訊、查證事實、採訪消息來源並撰寫或製作新聞。",skills:"採訪溝通、寫作、查證、媒體識讀",majors:"新聞、傳播、中文、外文等相關領域"},
+{name:"影音企劃／製作",cat:"傳播與內容",desc:"規劃影音主題、腳本、拍攝流程，並協調剪輯與發布。",skills:"企劃、敘事、影像製作、團隊合作",majors:"廣電、傳播、影視、數位媒體"},
+{name:"公關企劃",cat:"傳播與內容",desc:"規劃組織溝通、活動與媒體關係，協助建立公共形象。",skills:"溝通、文字、活動企劃、危機應對",majors:"公廣、傳播、行銷、企業管理"},
+{name:"平面設計師",cat:"設計與創意",desc:"運用圖像、文字與版面設計傳達訊息。",skills:"視覺表達、排版、設計軟體、創意思考",majors:"視覺傳達、商業設計、多媒體設計"},
+{name:"UI／UX設計師",cat:"設計與創意",desc:"研究使用者需求，規劃數位產品的操作流程與介面。",skills:"使用者研究、資訊架構、原型設計、溝通",majors:"工業設計、數位媒體、資訊、人因相關領域"},
+{name:"軟體工程師",cat:"科技與資訊",desc:"設計、開發、測試與維護軟體系統。",skills:"程式設計、邏輯思考、除錯、協作",majors:"資訊工程、資訊管理、資工相關領域"},
+{name:"資料分析師",cat:"科技與資訊",desc:"整理資料、分析趨勢，將結果轉化為決策參考。",skills:"統計、資料整理、視覺化、問題分析",majors:"統計、資管、資料科學、數學"},
+{name:"心理相關助人工作者",cat:"教育與助人",desc:"依專業資格與服務場域，提供心理、教育或支持性服務。",skills:"傾聽、同理、倫理、專業訓練",majors:"心理、諮商、社工、教育等；各職務資格不同"},
+{name:"教師",cat:"教育與助人",desc:"規劃教學活動、引導學習並評量學生學習情形。",skills:"表達、教學設計、溝通、班級經營",majors:"各學科系所及師資培育相關課程"},
+{name:"行銷企劃",cat:"商業與管理",desc:"分析市場與受眾，規劃品牌溝通、內容及行銷活動。",skills:"市場分析、企劃、數據解讀、創意",majors:"行銷、企管、傳播、廣告"},
+{name:"護理師",cat:"醫療與健康",desc:"在合格專業訓練與執業規範下提供護理照護。",skills:"專業知識、溝通、觀察、團隊合作",majors:"護理相關科系；須符合國家考試與執業規定"}
+];
+
+const majors=[
+{name:"新聞學系",group:"傳播",desc:"學習新聞採訪、寫作、編輯、媒體倫理與數位新聞製作。",jobs:"記者、編輯、影音新聞、內容企劃"},
+{name:"廣播電視／影視相關科系",group:"傳播",desc:"接觸節目企劃、攝影、導播、剪輯、聲音與影像敘事。",jobs:"影音製作、節目企劃、攝影、剪輯"},
+{name:"大眾傳播／傳播學系",group:"傳播",desc:"研究媒體、閱聽人、傳播理論、數位平台與社會溝通。",jobs:"媒體研究、公關、行銷、內容企劃"},
+{name:"資訊工程學系",group:"資訊",desc:"學習程式設計、演算法、系統、人工智慧與軟體開發。",jobs:"軟體工程師、系統工程師、AI相關職務"},
+{name:"資訊管理學系",group:"資訊",desc:"結合資訊科技與管理，學習資料、系統與企業流程。",jobs:"資料分析、系統分析、產品企劃"},
+{name:"心理學系",group:"社會與心理",desc:"研究人類認知、情緒、行為與心理研究方法。",jobs:"研究助理、人力資源、使用者研究等；專業心理師另有資格規定"},
+{name:"社會學系",group:"社會與心理",desc:"以研究方法理解社會制度、文化、群體與社會變遷。",jobs:"研究、公共事務、社會調查、非營利組織"},
+{name:"企業管理學系",group:"管理",desc:"學習組織管理、行銷、人力資源、財務與策略。",jobs:"管理、行銷、人資、專案企劃"},
+{name:"視覺傳達設計學系",group:"藝術與設計",desc:"學習平面、品牌、字體、插畫與視覺溝通。",jobs:"平面設計、品牌設計、視覺企劃"},
+{name:"教育學系",group:"教育",desc:"探討教育制度、課程、教學、學習與教育行政。",jobs:"教育行政、教學、教育研究等"},
+{name:"護理學系",group:"醫藥衛生",desc:"學習基礎醫學、護理知識、臨床照護與專業倫理。",jobs:"護理相關工作；須符合執照及執業規定"},
+{name:"機械工程學系",group:"工程",desc:"學習力學、材料、製造、自動化與機械系統設計。",jobs:"機械工程、製造、自動化、研發"}
+];
+
+function renderCareers(){
+const q=document.getElementById('careerSearch').value.toLowerCase();
+const cat=document.getElementById('careerCategory').value;
+const list=careers.filter(x=>(cat==='全部'||x.cat===cat)&&(x.name+x.desc+x.skills+x.majors).toLowerCase().includes(q));
+document.getElementById('careerGrid').innerHTML=list.length?list.map(x=>`<article class="card"><span class="tag">${x.cat}</span><h3>${x.name}</h3><p>${x.desc}</p><p><strong>需要能力：</strong>${x.skills}</p><p><strong>可探索科系：</strong>${x.majors}</p><button class="btn light" onclick="saveItem('職業','${x.name}')">☆ 收藏</button></article>`).join(''):'<div class="empty">找不到符合的職業，試試其他關鍵字。</div>';
+}
+
+function renderMajors(){
+const q=document.getElementById('majorSearch').value.toLowerCase();
+const group=document.getElementById('majorGroup').value;
+const list=majors.filter(x=>(group==='全部'||x.group===group)&&(x.name+x.desc+x.jobs).toLowerCase().includes(q));
+document.getElementById('majorGrid').innerHTML=list.length?list.map(x=>`<article class="card course-card"><div><span class="tag">${x.group}學群</span><h3>${x.name}</h3><p>${x.desc}</p><p><strong>可能發展：</strong>${x.jobs}</p></div><div class="details"><button class="btn light" onclick="saveItem('科系','${x.name}')">☆ 收藏科系</button></div></article>`).join(''):'<div class="empty">找不到符合的科系，試試其他關鍵字。</div>';
+}
+
+function getSaved(){
+try{return JSON.parse(localStorage.getItem('futureLabSaved')||'[]')}
+catch(e){return []}
+}
+
+function saveItem(type,name){
+let a=getSaved();
+if(!a.some(x=>x.type===type&&x.name===name)){
+a.push({type,name});
+localStorage.setItem('futureLabSaved',JSON.stringify(a));
+}
+renderSaved();
+alert('已加入收藏！');
+}
+
+function renderSaved(){
+let a=getSaved();
+document.getElementById('savedGrid').innerHTML=a.length?a.map(x=>`<article class="card"><span class="tag">${x.type}</span><h3>${x.name}</h3><button class="btn light" onclick="removeSaved('${x.type}','${x.name}')">移除</button></article>`).join(''):'<div class="empty">目前還沒有收藏，先到職業百科或科系介紹看看吧！</div>';
+}
+
+function removeSaved(type,name){
+let a=getSaved().filter(x=>!(x.type===type&&x.name===name));
+localStorage.setItem('futureLabSaved',JSON.stringify(a));
+renderSaved();
+}
+
+function clearSaved(){
+if(confirm('確定要清除所有收藏嗎？')){
+localStorage.removeItem('futureLabSaved');
+renderSaved();
+}
+}
+
+const qs=[
+{q:"你最喜歡哪一類活動？",a:[["採訪、寫作、拍攝或分享資訊","傳播"],["設計圖像、製作作品","設計"],["研究科技、解決邏輯問題","科技"],["陪伴他人、教學或參與社會服務","助人"]]},
+{q:"遇到一個感興趣的問題，你通常會？",a:[["找資料、訪問不同的人","傳播"],["想辦法用圖像或創意呈現","設計"],["拆解問題、找出規律","科技"],["了解當事人的感受與需求","助人"]]},
+{q:"你比較喜歡哪種學習方式？",a:[["討論、報告、企劃與表達","傳播"],["動手創作、視覺實作","設計"],["實驗、分析、程式或操作","科技"],["團隊合作、互動與服務","助人"]]},
+{q:"哪種成果最讓你有成就感？",a:[["讓更多人理解一件重要的事","傳播"],["完成一件有特色的作品","設計"],["成功解決一個技術難題","科技"],["幫助別人學會或改善處境","助人"]]},
+{q:"你希望未來工作常接觸什麼？",a:[["資訊、媒體與公共議題","傳播"],["美感、影像與創意","設計"],["數據、設備與新科技","科技"],["人群、教育與健康","助人"]]}
+];
+
+let qi=0,answers=[],selected=-1;
+
+function drawQuestion(){
+let q=qs[qi];
+document.getElementById('quizStep').textContent=`第 ${qi+1} 題／共 ${qs.length} 題`;
+document.getElementById('quizCount').textContent=`${answers.length} / ${qs.length}`;
+document.getElementById('progress').style.width=(qi/qs.length*100)+'%';
+document.getElementById('question').textContent=q.q;
+document.getElementById('choices').innerHTML=q.a.map((a,i)=>`<button class="choice ${selected===i?'selected':''}" onclick="choose(${i})">${a[0]}</button>`).join('');
+document.getElementById('nextBtn').disabled=selected<0;
+document.getElementById('nextBtn').textContent=qi===qs.length-1?'查看探索結果':'下一題';
+document.getElementById('quizResult').hidden=true;
+}
+
+function choose(i){
+selected=i;
+drawQuestion();
+}
+
+function nextQuestion(){
+if(selected<0)return;
+answers[qi]=qs[qi].a[selected][1];
+if(qi<qs.length-1){
+qi++;
+selected=-1;
+drawQuestion();
+}else{
+showResult();
+}
+}
+
+function showResult(){
+let counts={傳播:0,設計:0,科技:0,助人:0};
+answers.forEach(x=>counts[x]++);
+let top=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]);
+let labels={傳播:"傳播與內容",設計:"藝術與設計",科技:"科技與資訊",助人:"教育與助人"};
+let suggestions={
+傳播:"新聞、廣電、傳播、公關與行銷等科系",
+設計:"視覺傳達、數位媒體、工業設計等科系",
+科技:"資訊工程、資訊管理、資料科學等科系",
+助人:"教育、心理、社工、護理等相關科系"
+};
+document.getElementById('progress').style.width='100%';
+document.getElementById('quizStep').textContent='探索結果';
+document.getElementById('quizCount').textContent='完成';
+document.getElementById('question').textContent='你的興趣探索結果';
+document.getElementById('choices').innerHTML='';
+document.getElementById('nextBtn').disabled=true;
+let r=document.getElementById('quizResult');
+r.hidden=false;
+r.innerHTML=`<h3>最常選擇的方向：${labels[top[0]]}</h3><p>可以優先探索：${suggestions[top[0]]}。</p><p>其他感興趣方向：${top.slice(1).map(x=>labels[x]).join('、')}。</p><p>這只是初步探索，不代表能力高低或適合度排名。建議再閱讀科系課程、訪談學生，並實際參與相關活動。</p>`;
+}
+
+function restartQuiz(){
+qi=0;
+answers=[];
+selected=-1;
+drawQuestion();
+}
+
+function toggleMenu(){
+document.getElementById('nav').classList.toggle('open');
+}
+
+function closeMenu(){
+document.getElementById('nav').classList.remove('open');
+}
+
+renderCareers();
+renderMajors();
+renderSaved();
+drawQuestion();
+</script>
+</body>
+</html>
